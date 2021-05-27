@@ -71,3 +71,5 @@ then
 
   docker volume rm instant
 fi
+
+read -rn1
