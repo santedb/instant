@@ -58,7 +58,23 @@ spec:
         - containerPort: 8080
         - containerPort: 2100
         resources: {}
+        volumeMounts:
+        - mountPath: /santedb/data
+          name: santedb-mpi-seed
+        - mountPath: /santedb/config
+          name: santedb-mpi-config
+        - mountPath: /santedb/applets
+          name: santedb-mpi-app
       restartPolicy: Always
       serviceAccountName: ""
-      volumes: null
+      volumes: 
+      - name: santedb-mpi-seed
+        persistentVolumeClaim:
+          claimName: santedb-mpi-seed
+      - name: santedb-mpi-config
+        persistentVolumeClaim:
+          claimName: santedb-mpi-config
+      - name: santedb-mpi-app
+        persistentVolumeClaim:
+          claimName: santedb-mpi-app
 status: {}
