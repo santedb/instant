@@ -1,5 +1,5 @@
-#!/bin/sh
-composeFilePath=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+#!/bin/bash
+composeFilePath=$( cd "$(dirname "$0")" ; pwd -P )
 
 if [ "$1" == "init" ]; then
     docker-compose -f "$composeFilePath"/docker-compose.yml  up -d
