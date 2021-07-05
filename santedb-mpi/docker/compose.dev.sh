@@ -5,6 +5,7 @@ if [ "$1" == "init" ]; then
     docker-compose -f "$composeFilePath"/docker-compose.dev.yml  up -d
     echo "Deploying initial data to development instance..."
     docker cp ""$composeFilePath"/../data/" "santedb-mpi:/santedb"
+    docker cp ""$composeFilePath"/../applets" "santedb-mpi:/santedb"
 elif [ "$1" == "up" ]; then
     docker-compose -f "$composeFilePath"/docker-compose.dev.yml  up -d
 elif [ "$1" == "down" ]; then
