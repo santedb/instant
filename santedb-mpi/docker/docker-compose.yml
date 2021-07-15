@@ -24,19 +24,20 @@ services:
       - SDB_DATA_POLICY_ACTION=HIDE
       - SDB_DATA_POLICY_RESOURCE=Patient
       - SDB_DELAY_START=5000
-      - SDB_FHIR_RESOURCE=Patient;Bundle;Subscription;Practitioner;Organization
+      - SDB_FHIR_RESOURCE=Patient;Bundle;Subscription;Practitioner;Organization;RelatedPerson
     ports:
       - "8080:8080"
       - "2100:2100"
-    volumes:
-      - santedb-mpi-seed:/santedb/data
-      - santedb-mpi-config:/santedb/config
-      - santedb-mpi-app:/santedb/applets
     depends_on:
       - db
     restart: always
     
-volumes:
-  santedb-mpi-seed:
-  santedb-mpi-config:
-  santedb-mpi-app:
+  santedb-www:
+    image: santesuite/santedb-www:latest
+    container_name: santedb-www
+    ports:
+      - "9200:9200"
+    depends_on:
+      - santedb
+    restart: always
+      
